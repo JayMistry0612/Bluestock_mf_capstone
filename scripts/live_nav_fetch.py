@@ -8,8 +8,9 @@ def fetch_live_nav_data(scheme_codes):
         data = response.json()
         nav_data = data["data"]
         df = pd.DataFrame(nav_data)
-        file_path="C:/Users/JAY MISTRY/OneDrive/Desktop/Bluestock_mf_capstone/data/raw"
-        df.to_csv(f"{file_path}/{data['meta']['scheme_name']}_nav_data.csv", index=False)
+        from pathlib import Path
+        file_path = Path(__file__).parent.parent / "data" / "raw"
+        df.to_csv(file_path / f"{data['meta']['scheme_name']}_nav_data.csv", index=False)
         
 if __name__ == "__main__":
     scheme_codes= [125497,119551,120503,118632,119092,120841]        
